@@ -34,6 +34,8 @@ Following the release of deep learning libraries, higher-level API-like librarie
 > import tensorflow.keras as keras
 
 For this tutorial, I am going to be using TensorFlow version 1.10. You can figure out your version:  
-> import tensorflow as ts
-> print(tf.__version__)
-1.10.0
+> import tensorflow as ts  
+> print(tf.__version__)  
+> 1.10.0  
+
+

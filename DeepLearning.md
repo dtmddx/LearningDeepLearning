@@ -83,4 +83,5 @@ Alright, still a 5. Now let's build our model!
 > model = tf.keras.models.Sequential() # Sequential 序列
 A sequential model is what you're going to use most of the time. It just means things are going to go in direct order. A feed forward model. No going backwards...for now.
 
+Now, we'll pop in layers. Recall our neural network images? Was the input layer flat, or was it multi-dimensional? It was flat. So, we need to take this 28x28 image, and make it a flat 1x784. There are many ways for use to do this, but keras has a Flatten layer built just for us, so we'll use that.
 

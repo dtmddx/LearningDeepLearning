@@ -26,3 +26,14 @@ So this is really where magic happens. The idea is a single neuron is just some 
 The mathematical challange for the artificial neural newtwork is to best optimize thousands or millions or whatever number of weights you have, so that your output layer results in what you were hopping for. Solving for this problem, and building out the layers of our neural network model is exactly what TensorFlor is for.  
 TensorFlow is used for all things "operations on tensors." A tensor in this case is nothing fancy. It's a multi-dimensional array.  
 
+To install TensorFlow, simply do a:  
+> pip install --upgrade tensorflow
+
+Following the release of deep learning libraries, higher-level API-like libraries came out, which sit on top of the deep learning libraries, like TensorFlow, which make building, testing, and tweaking model even more simple. One such library that has easily become the most popular is Keras.
+
+> import tensorflow.keras as keras
+
+For this tutorial, I am going to be using TensorFlow version 1.10. You can figure out your version:  
+> import tensorflow as ts
+> print(tf.__version__)
+1.10.0

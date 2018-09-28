@@ -35,7 +35,29 @@ Following the release of deep learning libraries, higher-level API-like librarie
 
 For this tutorial, I am going to be using TensorFlow version 1.10. You can figure out your version:  
 > import tensorflow as ts  
-> print(tf.__version__)  
+> print(tf./__version/__)  
 > 1.10.0  
+
+Once we've got tensorflow imported, we can then begin to prepare our data, model it, and then train it. For the sake of simplicity, we'll be using the most common "hello world" example for deep learning, which is the minist dataset. It's a dataset of hand-written digits, 0 through 9. It's 28x28 iamges of these hand-written digits. We will show an example of using outside data das well, but, for now, let's load in this data:
+
+> mnist = tf/keras.datasets.mnist
+> (x_train, y_train), (x_test, y_test) = mnist.load_data()
+
+When you're working with your own collected data, chances are, it won't be packaged up so nicely, and you'll spend a bit more time and effort on this step.  
+
+What exactly do we have here? Let's take a quick peak.
+
+So the x_train data is the "feature." In this case, the features are pixel values of the 28x28 images of these digits 0-9. The y_train is the label (is it a 0, 1, 2...9)
+
+The testing variant of these variables is the "out of sample" examples that we will use. These are examples from our data that we're going to set aside, reserving them for testing the model.
+
+Neural networks are exceptionally good at fitting to data, so much they will commonly over-fit the data. Our real hope is that the neural network doesn't just memorize our data and that it instead "generalizes" and learns the actual probelm and patterns associated with it.
+
+Let's look at this actual data:
+> print(x_train[0])
+
+
+
+Alright, could we visualize this?
 
 

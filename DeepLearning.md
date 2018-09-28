@@ -85,3 +85,60 @@ A sequential model is what you're going to use most of the time. It just means t
 
 Now, we'll pop in layers. Recall our neural network images? Was the input layer flat, or was it multi-dimensional? It was flat. So, we need to take this 28x28 image, and make it a flat 1x784. There are many ways for use to do this, but keras has a Flatten layer built just for us, so we'll use that.
 
+> model.add(tf.keras.layers.Flatten())
+
+This will serve as our input layer. It's going to take the data we throw at it, and just flatten it for us. Next, we want our hidden layers. We're going to go with the simplest neural network layer, which is just **dense** layer. This refers to the fact that it's a densely-connected layer, meaning  it's "fully connected," where each node connects to each prior and subsequent node. Just like our image.
+
+> model.add(tf.keras.layers.Dense(128, activation=tf.nn.relu))
+
+This layer hase 128 units. The activation function is relu, short for rectified linear. Currently, relu is the activation function you should just default to. There are many more to test for sure, but, if you don't know what tu use, use relu to start.
+
+Let's add another identical layer for good measure.
+> model.add(tf.keras.layer.Dense(128, activation=tf.nn.relu))
+
+Now, we're ready for an output layer.
+> model.add(tf.keras.layers.Dense(10, activation=tf.nn.softmax))
+
+This is our final layer. It has 10 nodes. 1 node per possible number prediction. In this case, our activation function is a softmax function, since we're really actually looking for something more like a probability distribution of which of the possible prediction options this thing we're passing features through of is. Great, our model is done.
+
+Now, we need to "compile" the model. This is where we pass the setting for actually optimizing/training the model we've defined.
+
+> model.compile(optimize='adam',
+		loss='sparse_categorical_crossentropy',
+		matrics=['accuracy'])
+
+Remember why we picked relu as an activation function? Same thing is true for the Adam optimizer. It's just a great default to start with.
+
+Next, we have our loss metric. Loss is a calculation of error. A neural network doesn't actually attempt to maximize accuarcy. It attempts to minimize loss. Again, there are many choices, but some form of categorical crossentropy is a good start for a classificaton task like this.
+
+Now, we fit!
+> model.fit(x_train, y_train, epochs=3)
+
+As we train, we can see loss goes down, and accuracy improves quite quickly to 98~99%.
+
+Now that's loss and accuracy for in-sample data. Getting a high accuracy and low loss might mean your model learned how to classify digis in general or it simply memorized every single example you showed it. This is why we need to test on out-of-sample data (data we didn't use to train the model).
+
+
+> val_loss, val_acc = model.evaluate(x_test, y_test)
+> print(val_loss)
+> print(val_acc)
+
+It's going to be very likely your accuracy out of sample is a bit worse, same with loss. In fact, it should be a red flag if it's identical, or better.
+
+Finally, with your model, you can save it easily:
+> model.save('epic_num_reader.model')
+
+Load it back:
+new_model = tf.keras.models.load_model('epic_num_reader.model')
+
+Finally, make predictions!
+
+> predictions = new_model.predict(x_test)
+> print(predictions)
+
+Awesome! Okay, I think that covers all of the "quick start" types of things with keras. this is just barely scratching the surface of what's available to you, so start poking around Tensorflow and Keras documentation.
+
+Also check you the Machine Learning and Learn Machine Learning subreddits to stay up to date on news and information surrounding deep learning.
+
+If you have further questions too, you can join our Pyhong Dicord. Til next time.
+

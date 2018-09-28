@@ -59,5 +59,28 @@ Let's look at this actual data:
 
 
 Alright, could we visualize this?
+> import matplotlib.pyplot as plt
+> plt.imshow(x_train[0], cmap=plt.cm.binary)
+> plt.show()
+
+Okay, that makes sense. How about the value for y_train with the same index?
+
+> print(y_train[0])
+> 5
+
+It's generally a good idea to "normalize" your data. This typically involves scaling the data to be between 0 and 1, or maybe -1 and positive 1. In our case, each "pixel" is a feature, and each feature currently ranges from 0 to 255. Not quite 0 to 1. Let's change that with a handy utility function:
+
+> x_train = tf.keras.utils.normalize(x_train, axis=1)
+> x_test = tf.keras.utils.normalize(x_test, axis=1)
+
+Let's peak one mor time:
+> print(x_train[0])
+> plt.imshow(x_train[0], cmap=plt.cm.binary)
+> plt.show()
+
+Alright, still a 5. Now let's build our model!
+
+> model = tf.keras.models.Sequential() # Sequential 序列
+A sequential model is what you're going to use most of the time. It just means things are going to go in direct order. A feed forward model. No going backwards...for now.
 
 

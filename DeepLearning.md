@@ -149,7 +149,9 @@ Welcome to a tutorial where we'll be discussing how to loading in our own outsid
 
 First, we need a dataset. Let's grab the Dog vs Cats dataset from Microsoft. If this dataset disappears, someone let me know. I will host it myself.
 
-Now that you have the dataset, it's currently compressed. Upzip the dataset, and you should find that it creates a directory calledn PetImages. Inside of that, we have Cat and Dog directories, which are then filled with images of cats and dogs. Easy enough! Let's play with this dataset! First, we need to understand how we will convert this dataset to training data. We have a few issues right out of the gate. The largest issue is not all of these images are the same size. While we can eventually have 
+Now that you have the dataset, it's currently compressed. Upzip the dataset, and you should find that it creates a directory calledn PetImages. Inside of that, we have Cat and Dog directories, which are then filled with images of cats and dogs. Easy enough! Let's play with this dataset! First, we need to understand how we will convert this dataset to training data. We have a few issues right out of the gate. The largest issue is not all of these images are the same size. While we can eventually have variable-sized layers in neural networks, this is not the most basic thing to archieve. We're going to want to reshape things for now so every image has the same dimensions. Next, we may or may not want to keep color. To begin, install matplotlib if you don't already have it, as well as opencv.
+
+
 
 
 

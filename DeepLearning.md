@@ -243,3 +243,16 @@ for features, label in traning_data:
 
 
 print(X[0].reshape(-1, IMG_SIZE, IMG_SIZE, 1))
+
+
+
+
+# Convolutional Neural Networks - Deep Learning basics with Python, TensorFlow and Keras p.3
+Welcome to a tutorial where we'll be discussing Convolutional Neural Networks (Convnets and CNN), using one to classify dogs and cats with the dataset we built in the previous tutorial.
+
+The Convolutional Neural Network gained popularity through its use with image data, and is currently the state of the art for detecting what an image it, or what is contained in the image.
+
+The basic CNN structure is a follows: Convolution -> Pooling -> Convolution -> Pooling -> Fully Connected Layer -> Output
+
+Convolution is the act of taking the original data, and creating feature maps from it. Pooling is down-sampling, most often in the form of "max-pooling," where we select a region, and then take the maximun value in that region, and that becomes the new value for entire region. Fully Connected Layers are typical neural networks, where all nodes are "fully connected." The convolutional layers are not fully connected like a traditional neural network.
+

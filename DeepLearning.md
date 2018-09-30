@@ -151,13 +151,95 @@ First, we need a dataset. Let's grab the Dog vs Cats dataset from Microsoft. If 
 
 Now that you have the dataset, it's currently compressed. Upzip the dataset, and you should find that it creates a directory calledn PetImages. Inside of that, we have Cat and Dog directories, which are then filled with images of cats and dogs. Easy enough! Let's play with this dataset! First, we need to understand how we will convert this dataset to training data. We have a few issues right out of the gate. The largest issue is not all of these images are the same size. While we can eventually have variable-sized layers in neural networks, this is not the most basic thing to archieve. We're going to want to reshape things for now so every image has the same dimensions. Next, we may or may not want to keep color. To begin, install matplotlib if you don't already have it, as well as opencv.
 
+import numpy as np
+import matplotlib.pyplot as plt
+import os
+import cv2
+from tqdm import tqdm
+
+DATADIR = "your directory where cat and dog pics stored."
+
+CATEGORIES = ['Dog', 'Cat']
+
+for category in CATEGORIES:
+    path = os.path.join(DATADIR, category)
+    for img in os.listdir(path)
+        img_array = cv2.imread(os.path.join(path, img), cv2.IMREAD_GRAYSCALE)
+	plt.imshow(img_array, cmap='gray')
+	plt.show()
+
+	break
+    break
 
 
 
+you will see a dog.
+
+print(img_array)
+
+and the next is the shape of array.
+print(img_array.shape)
+
+So that's a 375 tall, 500 wide, and 3-channel image. 3-channel is because it's RGB(color). We definitely don't want the images that big, but also various images are different shapes, and this is also a problem.
+
+IMG_SIZE = 50
+
+new_array = cv2.resize(img_array, (IMG_SIZE, IMG_SIZE))
+plt.imshow(new_array, cmap='gray')
+plt.show()
+
+Hmm, that's a bit blurry I'd say. Let's go with 100x100?
+
+Better. Let's try that. Next, we're going to want to create training data and all that, but, first, we should set aside some images for final testing. I am going to just manually create a directory called Testing, and then create 2 directories inside of there, one for Dog and one for Cat. From here, I am just going to move the first 15 images from both Dog and Cat into the training versions. Make sure you move them, not copy. We will use this for our final tests.
+
+Now, we want to begin building our training data!
+
+training_data = []
+
+def create_training_data():
+    for category in CATEGORIES:
+        path = os.path.join(DATADIR, category)
+	class_num = CATEGORIES.index(category)
+
+	for img in tqdm(os.listdir(path)):
+	    try:
+	        img_array = cv2.imread(os.path.join(path,img), cv2.IMREAD_GRAYSCALE)
+		new_array = cr2.resize(img_array, (IMG_SIZE, IMG_SIZE))
+		traning_data.append([new_array, class_num])
+	    except Exception as e:
+	    	pass
+
+create_training_data()
+
+print(len(training_data))
+
+Great, we have almost 25k samples! That's awesome.
+
+On thin we want to do is make sure our data is balanced. In the case of this dataset, I can see that the dataset started off as being balanced. 
+
+By balanced, I mean there are the same number of examples for each class (same number of dogs and cats). If not balanced, you either wanto pass the class weights to the model, so that that is  can measure error appropriately, or balace your samples by trimming the larger set to be the same sas as the smaller set.
+
+f you do not balance, the model will initially learn that the best thing to do is predict only one class, whichever is the most common. Then, it will often get struk here. In our case though, this data is already balanced, so that's easy enough. Maybe later we'll have a dataset that isn't balanced so nicely.
+
+Also, if you have a dataset that is too large to fit into your ram, you can batch-load in your data. There are many ways to do this, some outside of TensorFlor and some build in. We may discuss this further, but, for now, we're mainly tring to cover how your data should look, be shaped, and fed into the models.
+
+Next, we want to shuffle the data. Right now our data is just all dogs, then all cats. This will usually wind up causing trouble too, as, initially, the classifier will learn to just predict dogs always. Then it will shift to oh, just predict all cats! Going back and forth like this is no good either.
+
+> import random
+> random.shuffle(training_data)
+Our training_data is a list, meaning it's nutable, so it's now nicely shuffled. We can confirm this by iterating over a few of the inital samples and printing out the class.
+
+for sample in training_data[:10]:
+    print(sample[1])
 
 
+Great! We've got the classes nicely mixed in! Time to make our model!
+X = []
+y = []
+
+for features, label in traning_data:
+    X.append(features)
+    y.append(label)
 
 
-
-
-
+print(X[0].reshape(-1, IMG_SIZE, IMG_SIZE, 1))

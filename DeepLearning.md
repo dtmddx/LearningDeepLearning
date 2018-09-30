@@ -256,3 +256,19 @@ The basic CNN structure is a follows: Convolution -> Pooling -> Convolution -> P
 
 Convolution is the act of taking the original data, and creating feature maps from it. Pooling is down-sampling, most often in the form of "max-pooling," where we select a region, and then take the maximun value in that region, and that becomes the new value for entire region. Fully Connected Layers are typical neural networks, where all nodes are "fully connected." The convolutional layers are not fully connected like a traditional neural network.
 
+Okay, so now let's depict what's happening. We'll start with an image of cat:
+ [image]
+ Then "conver to pixels"
+
+ [image]
+
+ For the purposes of this tutorial, assume each square is a pixel. Next, for the vonvolution step, we're going to take a certain window, and find features within that window.
+
+ That windows's features are now just a single pixel-sized feature in new featuremap, but we will have multiple layers of featuremaps in reality.
+
+Next, we slide that window over and continue the process. There will be some overlap, you can determine how much you want, you just do not want to be skipping an pixels, of course.
+
+[image]
+Now you continue this process until you've covered the entire image, and then you will have a fearuemap. Typically the fearuemap is just more pixel values, just a very simplified one:
+
+

@@ -1,18 +1,18 @@
 # Introduction to Deep Learning - Deep Learning basics with Python, TensorFlow and Keras p.1
 
-Welcome everyone to an updated deep learning with Python and Tensorflow tutrial mini-series. 
+Welcome everyone to an updated deep learning with Python and Tensorflow tutorial mini-series. 
 
 Since doing the first deep learning with TensorFlow course a little over 2 years ago, much has changed. It's nowhere near as complicated to get started, nor do you need to know as much to be successful with deep learning.
 
-If you're interested in more of the details with how TensorFlow works, youcan still chek the previous tutorials, as they go over the more raw TensorFlow. This is more of a deep learning quick start!
+If you're interested in more of the details with how TensorFlow works, you can still check the previous tutorials, as they go over the more raw TensorFlow. This is more of a deep learning quick start!
 
-To begin, we nned to find some balance between neural newtworks a total black box, und understanding every single detail with them.
+To begin, we need to find some balance between neural networks a total black box, and understanding every single detail with them.
 
 Let's show a typical model:
 
 [image]
 
-A basic neurla network consist of an input layer, which is just your data, in numerical form. After your input layer, you will have some number of what are called "hidden" layers. A hidden layer is just in between your input and output layers. One hidden layer means you just have a neural network. Two or more hidden layers? Boom, you've got a deep neual network!
+A basic neural network consist of an input layer, which is just your data, in numerical form. After your input layer, you will have some number of what are called "hidden" layers. A hidden layer is just in between your input and output layers. One hidden layer means you just have a neural network. Two or more hidden layers? Boom, you've got a deep neural network!
 
 Why is this? Well, if you just have a single hidden layer, the model is going to only learn linear relationships.  
 
@@ -21,9 +21,9 @@ If you have many hidden layers, you can begin to learn non-linear relationships 
 A single neuron might look as follows:
 [Image]
 
-So this is really where magic happens. The idea is a single neuron is just some of all the inputs x weights, fed through some sort of activation functions. The activation function is meant to simulate a neuron firing or not. A simple example would be a stepper function, where, at some point, the threshold is crossed, and the neuron fires a 1, else a 0. Let's say that neuron is in the first hidden layer, and it's going to communicate with the next hidden layer. So it's going to send it's 0 or 1 sigal, multiplied by the weights, to the next neuron, and this is the process for all neurons and all layers.  
+So this is really where magic happens. The idea is a single neuron is just some of all the inputs x weights, fed through some sort of activation functions. The activation function is meant to simulate a neuron firing or not. A simple example would be a stepper function, where, at some point, the threshold is crossed, and the neuron fires a 1, else a 0. Let's say that neuron is in the first hidden layer, and it's going to communicate with the next hidden layer. So it's going to send it's 0 or 1 signal, multiplied by the weights, to the next neuron, and this is the process for all neurons and all layers.  
 
-The mathematical challange for the artificial neural newtwork is to best optimize thousands or millions or whatever number of weights you have, so that your output layer results in what you were hopping for. Solving for this problem, and building out the layers of our neural network model is exactly what TensorFlor is for.  
+The mathematical challenge for the artificial neural network is to best optimize thousands or millions or whatever number of weights you have, so that your output layer results in what you were hopping for. Solving for this problem, and building out the layers of our neural network model is exactly what TensorFlor is for.  
 TensorFlow is used for all things "operations on tensors." A tensor in this case is nothing fancy. It's a multi-dimensional array.  
 
 To install TensorFlow, simply do a:  
@@ -38,7 +38,7 @@ For this tutorial, I am going to be using TensorFlow version 1.10. You can figur
 > print(tf./__version/__)  
 > 1.10.0  
 
-Once we've got tensorflow imported, we can then begin to prepare our data, model it, and then train it. For the sake of simplicity, we'll be using the most common "hello world" example for deep learning, which is the minist dataset. It's a dataset of hand-written digits, 0 through 9. It's 28x28 iamges of these hand-written digits. We will show an example of using outside data das well, but, for now, let's load in this data:
+Once we've got tensorflow imported, we can then begin to prepare our data, model it, and then train it. For the sake of simplicity, we'll be using the most common "hello world" example for deep learning, which is the mnist dataset. It's a dataset of hand-written digits, 0 through 9. It's 28x28 image of these hand-written digits. We will show an example of using outside data does well, but, for now, let's load in this data:
 
 > mnist = tf/keras.datasets.mnist
 > (x_train, y_train), (x_test, y_test) = mnist.load_data()
@@ -51,7 +51,7 @@ So the x_train data is the "feature." In this case, the features are pixel value
 
 The testing variant of these variables is the "out of sample" examples that we will use. These are examples from our data that we're going to set aside, reserving them for testing the model.
 
-Neural networks are exceptionally good at fitting to data, so much they will commonly over-fit the data. Our real hope is that the neural network doesn't just memorize our data and that it instead "generalizes" and learns the actual probelm and patterns associated with it.
+Neural networks are exceptionally good at fitting to data, so much they will commonly over-fit the data. Our real hope is that the neural network doesn't just memorize our data and that it instead "generalizes" and learns the actual problem and patterns associated with it.
 
 Let's look at this actual data:
 > print(x_train[0])
@@ -91,7 +91,7 @@ This will serve as our input layer. It's going to take the data we throw at it, 
 
 > model.add(tf.keras.layers.Dense(128, activation=tf.nn.relu))
 
-This layer hase 128 units. The activation function is relu, short for rectified linear. Currently, relu is the activation function you should just default to. There are many more to test for sure, but, if you don't know what tu use, use relu to start.
+This layer has 128 units. The activation function is relu, short for rectified linear. Currently, relu is the activation function you should just default to. There are many more to test for sure, but, if you don't know what tu use, use relu to start.
 
 Let's add another identical layer for good measure.
 > model.add(tf.keras.layer.Dense(128, activation=tf.nn.relu))
@@ -109,7 +109,7 @@ Now, we need to "compile" the model. This is where we pass the setting for actua
 
 Remember why we picked relu as an activation function? Same thing is true for the Adam optimizer. It's just a great default to start with.
 
-Next, we have our loss metric. Loss is a calculation of error. A neural network doesn't actually attempt to maximize accuarcy. It attempts to minimize loss. Again, there are many choices, but some form of categorical crossentropy is a good start for a classificaton task like this.
+Next, we have our loss metric. Loss is a calculation of error. A neural network doesn't actually attempt to maximize accuarcy. It attempts to minimize loss. Again, there are many choices, but some form of categorical crossentropy is a good start for a classification task like this.
 
 Now, we fit!
 > model.fit(x_train, y_train, epochs=3)
@@ -258,7 +258,7 @@ Convolution is the act of taking the original data, and creating feature maps fr
 
 Okay, so now let's depict what's happening. We'll start with an image of cat:
  [image]
- Then "conver to pixels"
+ Then "convert to pixels"
 
  [image]
 
@@ -269,6 +269,45 @@ Okay, so now let's depict what's happening. We'll start with an image of cat:
 Next, we slide that window over and continue the process. There will be some overlap, you can determine how much you want, you just do not want to be skipping an pixels, of course.
 
 [image]
-Now you continue this process until you've covered the entire image, and then you will have a fearuemap. Typically the fearuemap is just more pixel values, just a very simplified one:
+Now you continue this process until you've covered the entire image, and then you will have a featuremap. Typically the fearuemap is just more pixel values, just a very simplified one:
+
+Form here, we do pooling. Let's say our convolution gave us (I forgot to put a number in the 2nd row's most right square, assume it's 3 or less):
+The most common form of pooling is "max pooling," where we simple take the maximum value in the window, and that becomes the new value for that region.
+We continue this process, until we've pooled, and have something like:
+
+Each convolution and pooling step is a hidden layer. After this, we have a fully connected layer, followed by the output layer. The fully connected layer is your typical neural network type of layer, and same with the output layer.
+Conv + Pool = HL Hidden Layer
+
+import tensorflow as tf
+from tensorflow.keras.datasets import cifar10
+from tensorflow.keras.preprocessing.image import ImageDataGeneator
+
+
+# Analyzing Models with TensorBoard - Deep Learning basics with Python, TensorFlow and Keras p.4
+
+Welcome to part 4 of the Deep Learning basics with Python, TensorFlow, and Keras tutorial series. In this part, what we're going to be talking about is TensorBoard. TensorBoard is a handy application that allows you to view aspects of your model, or models, in your browser.
+
+The way that we use TensorBoard with Keras is via Keras callback. There are actually quit a few Keras callbacks, and you can make your own. Definitely check the others out: Keras callbacks. For example, Model Checkpoint is another useful one. For now, however, we're going to be focused on the Tensor Board callback.
+
+To begin, we need to add the following to our imports:
+
+> from tensorflow.keras.callbacks import TensorBoard
+
+Now we want to make our TensorBoard callback object:
+> NAME = "Cat-vs-dogs-CNN"
+> tensorboard = TensorBoard(log_dir="log/{}".format*NAME))
+
+Eventually, you will want to get a little more custom with your NAME, but this will do for now. So this will save the model's training data to logs/NAME, which can then be read by TensorBoard.
+
+
+
+
+
+
+
+
+
+
+
 
 

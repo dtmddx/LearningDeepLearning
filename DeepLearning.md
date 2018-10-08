@@ -295,12 +295,11 @@ To begin, we need to add the following to our imports:
 
 Now we want to make our TensorBoard callback object:
 > NAME = "Cat-vs-dogs-CNN"
-> tensorboard = TensorBoard(log_dir="log/{}".format*NAME))
+> tensorboard = TensorBoard(log_dir="log/{}".format//*NAME))
 
 Eventually, you will want to get a little more custom with your NAME, but this will do for now. So this will save the model's training data to logs/NAME, which can then be read by TensorBoard.
 
-
-
+After having run this, you should have a new directory called logs. We can visualize the initial results from this directory using tensorboard now. Open aconsole, change to your working directory, and type: tensorboard --logdir=logs/. You should see a notice lise: TensorBoard 1.10.0 at ..., where h-pc is whatever your machine's name is. Open a browser and head to this address. You should see something like:
 
 
 
